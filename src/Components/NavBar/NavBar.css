@@ -1,0 +1,30 @@
+.navbar{
+  background-color: #b8b0a9;
+  box-shadow: 0 0 10px #000000;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.icon-Brand{
+  font-size: 1.5rem;
+  margin-right: 0.3rem;
+}
+.navbar-brand{
+  display: flex;
+  align-items: center;
+  border-bottom: 0.14rem solid transparent;
+  transition-duration: 0.4s;
+}
+.navbar-brand:hover{
+  border-bottom: 0.14rem solid #3d1d00;
+}
+
+.nav-item{
+  margin-right: 1rem;
+  border-bottom: 0.14rem solid transparent;
+  transition-duration: 0.4s;
+}
+.nav-item:hover{
+  border-bottom: 0.14rem solid #3d1d00;
+}

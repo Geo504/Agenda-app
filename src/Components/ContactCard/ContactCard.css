@@ -1,0 +1,51 @@
+.card{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #dad2cb;
+}
+
+.contactIMG{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+.bodyCard{
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly
+}
+
+.container_Card-text p{
+  margin-bottom: 0.1rem;
+}
+
+.modifing-Icons{
+  padding: 0.5rem;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  color: #6f6f6f;
+}
+
+.edit-Icon{
+  transition-duration: 0.4s;
+}
+.edit-Icon:hover{
+  color: darkgreen;
+  transform: scale(1.2);
+}
+
+.delete-Icon{
+  transition-duration: 0.4s;
+}
+.delete-Icon:hover{
+  color: darkred;
+  transform: scale(1.2);
+}
