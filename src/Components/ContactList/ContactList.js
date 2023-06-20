@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import './ContactList.css'
 
 import { ContactCard } from '../ContactCard/ContactCard';
-import { useAppContext } from '../../Context/AppContext'
+import { useAppContext } from '../../Context/AppContext';
+import { ModalEdit } from "../ModalEdit/ModalEdit";
 
 
 export const ContactList = () => {
@@ -24,6 +25,7 @@ export const ContactList = () => {
           )
         })
       }
+      <ModalEdit />
     </div>
   )
 }

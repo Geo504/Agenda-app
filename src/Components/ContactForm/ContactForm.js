@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './ContactForm.css';
 import { useAppContext } from '../../Context/AppContext';
-import { validate } from 'uuid';
+
 
 export const ContactForm = () => {
   const value = useAppContext();
@@ -28,7 +28,7 @@ export const ContactForm = () => {
     const newErrors = {};
 
     if(!name || name ==='') newErrors.name = 'Please enter a name.';
-    if (!email || email==='') newErrors.email = 'Please enter a email.';
+    if (!email || email==='') newErrors.email = 'Please enter an email.';
 
     return newErrors;
   }

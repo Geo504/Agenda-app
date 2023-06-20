@@ -11,5 +11,5 @@ export const useInputData = (initialState) => {
       return(newInputData);
     });
   }
-  return ([inputData, handlerInputData]);
+  return ([inputData, handlerInputData, setInputData]);
 }

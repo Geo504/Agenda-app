@@ -1,13 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import {createUser, getUserData, updateUserData, deleteUserData} from "../Utils/apiCall"
-// import {useInputData} from "../Hooks/useInputData"
+import {useInputData} from "../Hooks/useInputData"
 
 const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
   const [contactList, setContactList]=useState([]);
-  // const [inputData, handlerInputData]=useInputData();
+  const [inputData, handlerInputData, setInputData]=useInputData({name: '', address: '', phone: '', email: ''});
+  const [contactModal, setContactModal]=useState(null);
 
   
   useEffect(()=>{
@@ -53,16 +54,12 @@ export const AppProvider = ({children}) => {
     setContactList(updatedContactList);
   }
 
-  // const [input, setInput]=useState({});
-
-  // const handleInput=(e)=>{
-  //   setInput(prev => {
-  //     const newInputData = {...prev};
-  //     newInputData[e.target.name] = e.target.value;
-  //     console.log(newInputData);
-  //     return(newInputData);
-  //   });
-  // }
+  const handleEditModal = (id) =>{
+    console.log(id);
+    const contactActive = contactList.find((contact)=> contact.id === id)
+    console.log(contactList);
+    setInputData(contactActive);
+  }
 
 
   const deleteContact = (id) =>{
@@ -73,16 +70,16 @@ export const AppProvider = ({children}) => {
 
 
   const store = useMemo(()=>{
-    return {contactList}
+    return {contactList, inputData, contactModal}
   },[contactList])
 
   const action = {
     handleAddContact,
     handleEditContact,
-    // handleInput,
-    // setInput,
     deleteContact,
-    // handlerInputData,
+    setInputData,
+    handlerInputData,
+    handleEditModal
   }
 
   return(

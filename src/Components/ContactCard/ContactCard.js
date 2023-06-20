@@ -1,7 +1,8 @@
 import React from "react";
 
 import { ModalDelete } from "../ModalDelete/ModalDelete";
-import { ModalEdit } from "../ModalEdit/ModalEdit";
+import { useAppContext } from '../../Context/AppContext';
+
 
 import './ContactCard.css'
 import { ImLocation } from 'react-icons/im';
@@ -13,6 +14,7 @@ import { BsTrash2 } from 'react-icons/bs';
 
 export const ContactCard = ({contact, deleteContact}) => {
   const {full_name, address, phone, email, id} = contact;
+  const value = useAppContext();
 
   return (
     <div className="card my-3">
@@ -31,9 +33,7 @@ export const ContactCard = ({contact, deleteContact}) => {
       </div>
 
       <div className="col-sm-1 modifing-Icons">
-        <ModalEdit contact={contact}>
-          <FiEdit2 className="edit-Icon" data-bs-toggle="modal" data-bs-target={`#modalEdit-${id}`}/>
-        </ModalEdit>
+          <FiEdit2 className="edit-Icon" data-bs-toggle="modal" data-bs-target={`#modalEdit`} onClick={()=>value.action.handleEditModal(id)}/>
 
         <ModalDelete deleteFunction={()=>deleteContact(id)} name={full_name} id={id}>
           <BsTrash2 className="delete-Icon" data-bs-toggle="modal" data-bs-target={`#modalDelete-${id}`}/>

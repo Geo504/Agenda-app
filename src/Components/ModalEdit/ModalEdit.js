@@ -4,39 +4,38 @@ import { useAppContext } from '../../Context/AppContext';
 // import {useInputData} from "../../Hooks/useInputData"
 
 
-export const ModalEdit = ({children, contact}) => {
-  const {full_name, address, phone, email, id} = contact;
+export const ModalEdit = ({children}) => {
   const value = useAppContext();
-  const [input, setInput]=useState({name: full_name, address: address, phone: phone, email: email});
 
-  const handleInput=(e)=>{
-    setInput(prev => {
-      const newInputData = {...prev};
-      newInputData[e.target.name] = e.target.value;
-      console.log(newInputData);
-      return(newInputData);
-    });
-  }
+  
 
-  // useEffect(()=>{
-  //   value.action.setInput({name: full_name, address: address, phone: phone, email: email});
-  // },[])
+  const handleInput = value.action.handlerInputData;
+  const input = value.store.inputData;
+  console.log(input);
+  // const [input, setInput]=useState({name: full_name, address: address, phone: phone, email: email});
+
+  // const handleInput=(e)=>{
+  //   setInput(prev => {
+  //     const newInputData = {...prev};
+  //     newInputData[e.target.name] = e.target.value;
+  //     return(newInputData);
+  //   });
+  // }
+
   // value.action.setInput({name: full_name, address: address, phone: phone, email: email});
 
   const editContact = (e) =>{
-    value.action.handleEditContact(e, id);
+    // value.action.handleEditContact(e, id);
   }
 
   return (
     <>
-    {children}
-
-    <div className="modal fade" id={`modalEdit-${id}`} data-bs-backdrop="static">
+    <div className="modal fade" id={`modalEdit`} data-bs-backdrop="static">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           
           <div className="modal-header">
-            <h4 className="modal-title">Edit <b>{full_name}</b> Contact</h4>
+            <h4 className="modal-title">Edit <b></b> Contact</h4>
             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
           </div>
           
