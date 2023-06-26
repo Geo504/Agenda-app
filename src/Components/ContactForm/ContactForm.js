@@ -1,53 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 
 import './ContactForm.css';
+
 import { useAppContext } from '../../Context/AppContext';
 
 
 export const ContactForm = () => {
   const value = useAppContext();
-
-  const [form, setForm]=useState({});
+  const handleInput = value.action.handlerInputData;
+  const input = value.store.inputData;
   const [errors, setErrors]=useState({});
 
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]: value
-    })
-    if(!!errors[field])
-    setErrors({
-      ...errors,
-      [field]: null
-    })
+  useEffect(()=>{
+    value.action.updateInput({full_name: '', address: '', phone: '', email: ''});
+  },[])
+
+
+
+
+  const checkErrors = () =>{
+    if(!!errors.full_name) {setErrors({...errors, full_name: null})};
+    if(!!errors.email) {setErrors({...errors, email: null})};
   }
+  useEffect(()=>checkErrors(), [input])
 
   const validateForm =()=>{
-    const {name, address, phone, email } = form;
+    const {full_name, email } = input;
     const newErrors = {};
 
-    if(!name || name ==='') newErrors.name = 'Please enter a name.';
-    if (!email || email==='') newErrors.email = 'Please enter an email.';
+    if ( full_name ==='') newErrors.full_name = 'Please enter a name.';
+    if ( email==='') newErrors.email = 'Please enter an email.';
 
     return newErrors;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const formErrors = validateForm();
 
     if(Object.keys(formErrors).length>0){
       setErrors(formErrors);
     }
-    else {
-      setForm({
-        name: '',
-        address: '',
-        phone: '',
-        email: '',
-      })
-    }
   }
+  
 
   return (
     <div className='container-Form' method='get'>
@@ -55,30 +50,30 @@ export const ContactForm = () => {
 
       <form onSubmit={value.action.handleAddContact} className='needs-validation'>
         <div className="col-12">
-          <label htmlFor="inputAddress" className="form-label">Contact Full Name:</label>
+          <label className="form-label">Contact Full Name:</label>
           <input
             type="text"
-            className={`form-control ${!!errors.name && 'redInput'}`}
-            name='name'
+            className={`form-control ${!!errors.full_name && 'redInput'}`}
+            name='full_name'
             placeholder="Martha Jones"
-            value={form.name}
-            onChange={(e)=> setField('name' ,e.target.value)}
-            isinvalid={!!errors.name}
+            value={input.full_name}
+            onChange={handleInput}
+            isinvalid={!!errors.full_name}
             required />
-            <div className={!!errors.name ? 'invalid' : 'hide'}>
-              {errors.name}
+            <div className={!!errors.full_name ? 'invalid' : 'hide'}>
+              {errors.full_name}
             </div>
         </div>
 
         <div className="col-12">
-          <label htmlFor="inputAddress" className="form-label">Address:</label>
+          <label className="form-label">Address:</label>
           <input
             type="text"
             className="form-control"
             name='address'
             placeholder="1234 Main St"
-            value={form.address}
-            onChange={(e)=> setField('address' ,e.target.value)}
+            value={input.address}
+            onChange={handleInput}
             isinvalid={!!errors.address} />
             <div className={!!errors.address ? 'invalid' : 'hide'}>
               {errors.address}
@@ -86,14 +81,14 @@ export const ContactForm = () => {
         </div>
 
         <div className="col-12">
-          <label htmlFor="inputAddress" className="form-label">Phone:</label>
+          <label className="form-label">Phone:</label>
           <input
             type="text"
             className="form-control"
             name='phone'
             placeholder="(+34) 2999-4454"
-            value={form.phone}
-            onChange={(e)=> setField('phone' ,e.target.value)}
+            value={input.phone}
+            onChange={handleInput}
             isinvalid={!!errors.phone} />
             <div className={!!errors.phone ? 'invalid' : 'hide'}>
               {errors.phone}
@@ -101,13 +96,13 @@ export const ContactForm = () => {
         </div>
 
         <div className="col-12">
-          <label htmlFor="inputEmail" className="form-label">Email:</label>
+          <label className="form-label">Email:</label>
           <input
             type="email"
             className={`form-control ${!!errors.email && 'redInput'}`}
             name='email'
-            value={form.email}
-            onChange={(e)=> setField('email' ,e.target.value)}
+            value={input.email}
+            onChange={handleInput}
             isinvalid={!!errors.email}
             required />
             <div className={!!errors.email ? 'invalid' : 'hide'}>

@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { useAppContext } from '../../Context/AppContext';
-// import {useInputData} from "../../Hooks/useInputData"
 
 
-export const ModalEdit = ({children}) => {
+export const ModalEdit = () => {
   const value = useAppContext();
-
-  
 
   const handleInput = value.action.handlerInputData;
   const input = value.store.inputData;
-  console.log(input);
-  // const [input, setInput]=useState({name: full_name, address: address, phone: phone, email: email});
 
-  // const handleInput=(e)=>{
-  //   setInput(prev => {
-  //     const newInputData = {...prev};
-  //     newInputData[e.target.name] = e.target.value;
-  //     return(newInputData);
-  //   });
-  // }
-
-  // value.action.setInput({name: full_name, address: address, phone: phone, email: email});
 
   const editContact = (e) =>{
-    // value.action.handleEditContact(e, id);
+    value.action.handleEditContact(e, input.id);
   }
 
   return (
@@ -35,7 +21,7 @@ export const ModalEdit = ({children}) => {
         <div className="modal-content">
           
           <div className="modal-header">
-            <h4 className="modal-title">Edit <b></b> Contact</h4>
+            <h4 className="modal-title">Edit Contact</h4>
             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
           </div>
           
@@ -47,8 +33,8 @@ export const ModalEdit = ({children}) => {
                 <input
                   type="text"
                   className="form-control"
-                  name='name'
-                  value={input.name}
+                  name='full_name'
+                  value={input.full_name}
                   onChange={handleInput}
                   placeholder="Martha Jones"
                   required />

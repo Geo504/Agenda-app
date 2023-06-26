@@ -3,12 +3,16 @@ import React from 'react'
 import './ModalDelete.css'
 import { BsTrash2 } from 'react-icons/bs';
 
-export const ModalDelete = ({children, deleteFunction, name, id}) => {
+import { useAppContext } from '../../Context/AppContext';
+
+export const ModalDelete = () => {
+  const value = useAppContext();
+
+  const input = value.store.inputData;
+
   return (
     <>
-      {children}
-
-      <div className="modal fade" id={`modalDelete-${id}`} data-bs-backdrop="static">
+      <div className="modal fade" id='modalDelete' data-bs-backdrop="static">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             
@@ -18,14 +22,14 @@ export const ModalDelete = ({children, deleteFunction, name, id}) => {
             </div>
             
             <div className="modal-body">
-              Are you sure you want to delete <b>{name}</b> from contacts?
+              Are you sure you want to delete <b>{input.full_name}</b> from contacts?
             </div>
 
             <div className="modal-footer">
               <button className="btn btn-outline-dark" data-bs-dismiss="modal">
                 No
               </button>
-              <button className="btn btn-outline-danger" data-bs-dismiss="modal" onClick={deleteFunction}>
+              <button className="btn btn-outline-danger" data-bs-dismiss="modal" onClick={()=>value.action.deleteContact(input.id)}>
                   Delete <BsTrash2/>
               </button>
             </div>

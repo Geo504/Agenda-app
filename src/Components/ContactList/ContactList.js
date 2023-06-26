@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 import './ContactList.css'
 
 import { ContactCard } from '../ContactCard/ContactCard';
-import { useAppContext } from '../../Context/AppContext';
 import { ModalEdit } from "../ModalEdit/ModalEdit";
+import { ModalDelete } from "../ModalDelete/ModalDelete";
+import { useAppContext } from '../../Context/AppContext';
+
 
 
 export const ContactList = () => {
@@ -19,13 +20,12 @@ export const ContactList = () => {
             <ContactCard
               key={contact.id}
               contact={contact}
-              // editContact={}
-              deleteContact={value.action.deleteContact}
             />
           )
         })
       }
       <ModalEdit />
+      <ModalDelete />
     </div>
   )
 }
