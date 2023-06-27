@@ -15,12 +15,9 @@
   justify-content: space-between;
 }
 
-.hide{
-  display: none;
-}
+
 
 .invalid{
-  /* display: inline-block; */
   display: block;
   margin-top: 0.3rem;
   padding: 0.2rem 0.5rem;
@@ -29,6 +26,13 @@
   background-color: rgba(186, 0, 0, 0.26);
   color: darkred;
 }
-.redInput{
-  border-color: darkred;
+.valid{
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: darkgreen;
+  background-color: rgba(137, 177, 137, 0.612);
+  border: 1px solid darkgreen;
+  border-radius: 5px;
 }

@@ -14,15 +14,13 @@ export const AppProvider = ({children}) => {
     getUserData(setContactList);
   }, [])
 
-  const handleAddContact = (e) =>{
-    e.preventDefault();
-    
+  const handleAddContact = (inputData) =>{
     const newContact = {
       agenda_slug: "geovanny_valladares",
-      full_name: inputData.full_name.value.trim(),
-      address: inputData.address.value.trim().length>0 ? inputData.address.value.trim() : 'Empty...',
-      phone: inputData.phone.value.trim().length>0 ? inputData.phone.value.trim() : 'Empty...',
-      email: inputData.email.value.trim()
+      full_name: inputData.full_name.trim(),
+      address: inputData.address.trim().length>0 ? inputData.address.trim() : 'Empty...',
+      phone: inputData.phone.trim().length>0 ? inputData.phone.trim() : 'Empty...',
+      email: inputData.email.trim()
     }
     setContactList(prev=> [...prev, newContact]);
     createUser(newContact, setContactList);
@@ -41,14 +39,14 @@ export const AppProvider = ({children}) => {
         item.full_name = inputData.full_name.trim().length>0
           ? inputData.full_name.trim()
           :'Empty...';
-        item.address = inputData.address.value.trim().length>0
-          ? inputData.address.value.trim()
+        item.address = inputData.address.trim().length>0
+          ? inputData.address.trim()
           : 'Empty...';
-        item.phone = inputData.phone.value.trim().length>0
-          ? inputData.phone.value.trim() 
+        item.phone = inputData.phone.trim().length>0
+          ? inputData.phone.trim() 
           : 'Empty...';
-        item.email = inputData.email.value.trim().length>0 
-          ? inputData.email.value.trim()
+        item.email = inputData.email.trim().length>0 
+          ? inputData.email.trim()
           : 'Empty...';
         
         updateUserData("geovanny_valladares", item);
